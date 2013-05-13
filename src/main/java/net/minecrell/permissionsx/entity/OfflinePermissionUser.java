@@ -19,7 +19,7 @@ public interface OfflinePermissionUser {
 	/**
 	 * Returns the User as a Valid Bukkit OfflinePlayer
 	 * @return the OfflinePlayer Object, never null
-	 * @see org.bukkit.entity.OfflinePlayer
+	 * @see org.bukkit.OfflinePlayer
 	 */
 	public abstract OfflinePlayer getBukkitPlayer();
 	
