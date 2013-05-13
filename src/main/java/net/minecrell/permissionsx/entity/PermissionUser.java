@@ -22,11 +22,11 @@ public interface PermissionUser extends OfflinePermissionUser {
 	public abstract PermissionManager getManager();
 	
 	/**
-	 * Returns the User as a Valid Bukkit Player
-	 * @return the Player Object, nerver null
-	 * @see org.bukkit.entity.player
+	 * Returns the User as a valid Bukkit Player
+	 * @return the Player Object, never null
+	 * @see org.bukkit.entity.Player
 	 */
-	public abstract Player asBukkitPlayer();
+	public abstract Player getBukkitPlayer();
 	
 	/**
 	 * Returns the Players Permissions as a List<Permission>
