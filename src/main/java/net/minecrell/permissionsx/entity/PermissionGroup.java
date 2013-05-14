@@ -78,11 +78,11 @@ public interface PermissionGroup {
 	public abstract PermissionManager getManager();
 	
 	//TODO: Documentation
-	public abstract boolean isUser(OfflinePermissionUser user);
+	public abstract boolean containsUser(OfflinePermissionUser user);
 	
 	public abstract void setUser(OfflinePermissionUser user, boolean flag);
 	public abstract void addUser(OfflinePermissionUser user);
-	public abstract void removeUset(OfflinePermissionUser user);
+	public abstract void removeUser(OfflinePermissionUser user);
 	
 	
 }
