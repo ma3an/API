@@ -42,7 +42,7 @@ public interface PermissionManager {
 	
 	/**
 	 * Returns the Name of the PermissionsX implementation 
-	 * @return by default: <code>CraftPermissionsX</code>
+	 * @return by default: <code>PermissionsX</code>
 	 */
 	public abstract String getName();
 	
