@@ -28,7 +28,7 @@ public class UserPrimaryGroupChangeEvent extends OfflinePermissionUserEvent impl
 		this.previous = previous;
 		this.current = current;
 	}
-	
+
 	/**
 	 * Gets the previous permission group of the permission user
 	 * @return Previous permission group
@@ -36,7 +36,7 @@ public class UserPrimaryGroupChangeEvent extends OfflinePermissionUserEvent impl
 	public PermissionGroup getPreviousGroup() {
 		return previous;
 	}
-	
+
 	/**
 	 * Gets the new permission group for the permission user
 	 * @return New permission group
@@ -64,13 +64,13 @@ public class UserPrimaryGroupChangeEvent extends OfflinePermissionUserEvent impl
 	/* (non-Javadoc)
 	 * @see org.bukkit.event.Event#getHandlers()
 	 */
-    @Override
-    public HandlerList getHandlers() {
-        return handlers;
-    }
+	@Override
+	public HandlerList getHandlers() {
+		return handlers;
+	}
 
-    public static HandlerList getHandlerList() {
-        return handlers;
-    }
+	public static HandlerList getHandlerList() {
+		return handlers;
+	}
 
 }
