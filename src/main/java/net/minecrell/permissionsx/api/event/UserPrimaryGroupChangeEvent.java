@@ -15,18 +15,18 @@ import org.bukkit.event.HandlerList;
 public class UserPrimaryGroupChangeEvent extends OfflinePermissionUserEvent implements Cancellable {
 	private static final HandlerList handlers = new HandlerList();
 	private boolean cancelled;
-	private final PermissionGroup from, to;
+	private final PermissionGroup previous, current;
 
 	/**
 	 * Creates a PrimaryGroupChangeEvent for a player.
 	 * @param who Permission user who is involved in this event
-	 * @param from 
-	 * @param to 
+	 * @param previous 
+	 * @param current 
 	 */
-	public UserPrimaryGroupChangeEvent(OfflinePermissionUser user, PermissionGroup from, PermissionGroup to) {
+	public UserPrimaryGroupChangeEvent(OfflinePermissionUser user, PermissionGroup previous, PermissionGroup current) {
 		super(user);
-		this.from = from;
-		this.to = to;
+		this.previous = previous;
+		this.current = current;
 	}
 	
 	/**
@@ -34,7 +34,7 @@ public class UserPrimaryGroupChangeEvent extends OfflinePermissionUserEvent impl
 	 * @return Previous permission group
 	 */
 	public PermissionGroup getPreviousGroup() {
-		return from;
+		return previous;
 	}
 	
 	/**
@@ -42,7 +42,7 @@ public class UserPrimaryGroupChangeEvent extends OfflinePermissionUserEvent impl
 	 * @return New permission group
 	 */
 	public PermissionGroup getNewGroup() {
-		return to;
+		return current;
 	}
 
 	/* (non-Javadoc)
