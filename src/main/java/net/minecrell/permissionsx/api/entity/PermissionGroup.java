@@ -1,5 +1,3 @@
-/**
- */
 package net.minecrell.permissionsx.api.entity;
 
 import java.util.List;
