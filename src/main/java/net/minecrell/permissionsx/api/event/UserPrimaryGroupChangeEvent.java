@@ -18,10 +18,10 @@ public class UserPrimaryGroupChangeEvent extends OfflinePermissionUserEvent impl
 	private final PermissionGroup previous, current;
 
 	/**
-	 * Creates a PrimaryGroupChangeEvent for a player.
+	 * Creates a PrimaryGroupChangeEvent for a player
 	 * @param who Permission user who is involved in this event
-	 * @param previous 
-	 * @param current 
+	 * @param previous Previous permission group of the permission user
+	 * @param current New permission group of the permission user
 	 */
 	public UserPrimaryGroupChangeEvent(OfflinePermissionUser user, PermissionGroup previous, PermissionGroup current) {
 		super(user);
@@ -30,7 +30,7 @@ public class UserPrimaryGroupChangeEvent extends OfflinePermissionUserEvent impl
 	}
 	
 	/**
-	 * Gets the previous permission group of the permission user.
+	 * Gets the previous permission group of the permission user
 	 * @return Previous permission group
 	 */
 	public PermissionGroup getPreviousGroup() {
@@ -38,7 +38,7 @@ public class UserPrimaryGroupChangeEvent extends OfflinePermissionUserEvent impl
 	}
 	
 	/**
-	 * Gets the new permission group for the permission user.
+	 * Gets the new permission group for the permission user
 	 * @return New permission group
 	 */
 	public PermissionGroup getNewGroup() {
