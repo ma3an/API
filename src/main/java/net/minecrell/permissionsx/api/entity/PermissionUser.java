@@ -1,11 +1,11 @@
-package net.minecrell.permissionsx.entity;
+package net.minecrell.permissionsx.api.entity;
 
 import java.util.List;
 
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
 
-import net.minecrell.permissionsx.PermissionManager;
+import net.minecrell.permissionsx.api.PermissionManager;
 
 /**
  * Represents a Specific Permission User

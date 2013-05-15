@@ -15,12 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.minecrell.permissionsx;
+package net.minecrell.permissionsx.api;
 
 import java.util.logging.Logger;
 
-import net.minecrell.permissionsx.entity.OfflinePermissionUser;
-import net.minecrell.permissionsx.entity.PermissionUser;
+import net.minecrell.permissionsx.api.entity.OfflinePermissionUser;
+import net.minecrell.permissionsx.api.entity.PermissionUser;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -82,7 +82,7 @@ public interface PermissionManager {
 	 * Returns a Specific User identified by his username.
 	 * @param name the Username you wan't to the the Player from
 	 * @return the User, may be null if the user can't be found or is not online
-	 * @see net.minecrell.permissionsx.entity.PermissionUser
+	 * @see net.minecrell.permissionsx.api.entity.PermissionUser
 	 */
 	public abstract PermissionUser getUser(String name);
 	
@@ -90,7 +90,7 @@ public interface PermissionManager {
 	 * Returns a Specific User identified by his username.
 	 * @param name the Username you wan't to the the Player from
 	 * @return the User, may be null if the user can't be found
-	 * @see net.minecrell.permissionsx.entity.PermissionUser
+	 * @see net.minecrell.permissionsx.api.entity.PermissionUser
 	 */
 	public abstract OfflinePermissionUser getOfflineUser(String name);
 	

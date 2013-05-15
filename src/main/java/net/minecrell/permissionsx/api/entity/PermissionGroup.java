@@ -1,10 +1,10 @@
 /**
  */
-package net.minecrell.permissionsx.entity;
+package net.minecrell.permissionsx.api.entity;
 
 import java.util.List;
 
-import net.minecrell.permissionsx.PermissionManager;
+import net.minecrell.permissionsx.api.PermissionManager;
 
 import org.bukkit.permissions.Permission;
 

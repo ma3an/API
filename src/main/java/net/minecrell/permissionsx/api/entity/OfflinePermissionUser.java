@@ -1,4 +1,4 @@
-package net.minecrell.permissionsx.entity;
+package net.minecrell.permissionsx.api.entity;
 
 import org.bukkit.OfflinePlayer;
 
