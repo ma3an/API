@@ -28,13 +28,6 @@ public interface PermissionUser extends OfflinePermissionUser {
 	 */
 	public abstract Player getBukkitPlayer();
 	
-	/**
-	 * Returns the Players Permissions as a List<Permission>
-	 * @return the permissions
-	 * @see import org.bukkit.permissions.Permission;
-	 */
-	public abstract List<Permission> getPermissions();
-	
 	//TODO PermissionUser interface
 	
 }

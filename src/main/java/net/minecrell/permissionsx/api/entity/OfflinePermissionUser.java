@@ -1,6 +1,9 @@
 package net.minecrell.permissionsx.api.entity;
 
+import java.util.List;
+
 import org.bukkit.OfflinePlayer;
+import org.bukkit.permissions.Permission;
 
 /**
  * Represents a Specific Offline Permission User
@@ -22,6 +25,16 @@ public interface OfflinePermissionUser {
 	 * @see org.bukkit.OfflinePlayer
 	 */
 	public abstract OfflinePlayer getBukkitPlayer();
+	
+	public abstract void setPermission(String name , boolean flag);
+	public abstract boolean hasPermission(String name);
+	
+	/**
+	 * Returns the Players Permissions as a List<Permission>
+	 * @return the permissions
+	 * @see import org.bukkit.permissions.Permission;
+	 */
+	public abstract List<Permission> getPermissions();
 	
 	//TODO OfflinePermissionUser interface
 	
