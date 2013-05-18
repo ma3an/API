@@ -20,6 +20,7 @@ package net.minecrell.permissionsx.api;
 import java.util.logging.Logger;
 
 import net.minecrell.permissionsx.api.entity.OfflinePermissionUser;
+import net.minecrell.permissionsx.api.entity.PermissionGroup;
 import net.minecrell.permissionsx.api.entity.PermissionUser;
 
 import org.bukkit.configuration.file.FileConfiguration;
@@ -102,6 +103,12 @@ public interface PermissionManager {
 	 */
 	public abstract Player getPlayer(String name);
 	
+	/**
+	 * Returns a Specific Group identified by it's Group name
+	 * @param name the Group name
+	 * @return the Group instance. null if the group couldnt be found.
+	 */
+	public abstract PermissionGroup getGroup(String name);
 	
 	/**
 	 * Returns the Configuration File used to load the Preferences from.

@@ -3,6 +3,7 @@ package net.minecrell.permissionsx.api.entity;
 import java.util.List;
 
 import net.minecrell.permissionsx.api.PermissionManager;
+import net.minecrell.permissionsx.api.meta.MetaDataHolder;
 
 import org.bukkit.permissions.Permission;
 
@@ -12,7 +13,7 @@ import org.bukkit.permissions.Permission;
  * @author MP5K
  * @version 0.0.1a
  */
-public interface PermissionGroup {
+public interface PermissionGroup extends MetaDataHolder {
 
 	/**
 	 * Returns the Groups Name

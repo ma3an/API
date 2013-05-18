@@ -1,9 +1,6 @@
 package net.minecrell.permissionsx.api.entity;
 
-import java.util.List;
-
 import org.bukkit.entity.Player;
-import org.bukkit.permissions.Permission;
 
 import net.minecrell.permissionsx.api.PermissionManager;
 
@@ -27,6 +24,12 @@ public interface PermissionUser extends OfflinePermissionUser {
 	 * @see org.bukkit.entity.Player
 	 */
 	public abstract Player getBukkitPlayer();
+	
+	/**
+	 * Sets the Player Operator status
+	 * @param flag the Status to set (true for op, false for user)
+	 */
+	public abstract void setOP(boolean flag);
 	
 	//TODO PermissionUser interface
 	
