@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 import net.minecrell.permissionsx.api.entity.OfflinePermissionUser;
 import net.minecrell.permissionsx.api.entity.PermissionGroup;
 import net.minecrell.permissionsx.api.entity.PermissionUser;
+import net.minecrell.permissionsx.api.module.ModuleManager;
 
 import org.bukkit.Server;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -63,6 +64,8 @@ public interface PermissionManager {
 	
 	// TODO: Javadocs
 	public Server getServer();
+	
+	public ModuleManager getModuleManager();
 	
 	/**
 	 * Enables the Permission Manager

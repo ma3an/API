@@ -13,8 +13,7 @@ public class PermissionsXModule implements PermissionModule {
 	
 	// TODO: Javadocs :(
 	
-	private PermissionManager permissionManager;
-	
+	private ModuleManager moduleManager;	
 	private ModuleLoader loader;
 	
 	private String moduleName;
@@ -35,19 +34,23 @@ public class PermissionsXModule implements PermissionModule {
 	}
 	
 	@Override
+	public final ModuleManager getModuleManager() {
+		return moduleManager;
+	}
+	
+	@Override
 	public final ModuleLoader getModuleLoader() {
 		return loader;
 	}
 	
-	protected final void initialize(ModuleLoader loader, PermissionManager permissionManager, String moduleName, File file, File dataFolder) {
+	protected final void initialize(ModuleLoader loader, ModuleManager moduleManager, String moduleName, File file, File dataFolder) {
 		if (!initialized) {
 			this.initialized = true;
 			
 			this.loader = loader;
+			this.moduleManager = moduleManager;
 			
 			this.moduleName = moduleName;
-			
-			this.permissionManager = permissionManager;
 			
 			this.file = file;
 			this.dataFolder = dataFolder;
@@ -86,17 +89,18 @@ public class PermissionsXModule implements PermissionModule {
 	
 	@Override
 	public final PermissionManager getPermissionManager() {
-		return permissionManager;
+		if (this.getModuleManager() == null) return null;
+		return this.getModuleManager().getPermissionManager();
 	}
 	@Override
 	public final Plugin getPluginContainer() {
-		if (permissionManager == null) return null;
-		return permissionManager.getContainer();
+		if (this.getPermissionManager() == null) return null;
+		return this.getPermissionManager().getContainer();
 	}
 	@Override
 	public final Server getServer() {
-		if (permissionManager == null) return null;
-		return permissionManager.getServer();
+		if (this.getPermissionManager() == null) return null;
+		return this.getPermissionManager().getServer();
 	}
 	
 	protected final File getFile() {

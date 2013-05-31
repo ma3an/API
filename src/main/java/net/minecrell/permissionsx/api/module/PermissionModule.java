@@ -17,6 +17,7 @@ public interface PermissionModule {
 	
 	public Logger getLogger();
 	
+	public ModuleManager getModuleManager();
 	
 	public PermissionManager getPermissionManager();
 	public Plugin getPluginContainer();
