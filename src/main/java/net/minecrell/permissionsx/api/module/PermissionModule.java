@@ -13,23 +13,28 @@ public interface PermissionModule {
 	
 	// TODO: Javadocs
 	
-	public abstract String getName();
+	public String getName();
 	
-	public abstract Logger getLogger();
-	
-	
-	public abstract PermissionManager getManager();
-	public abstract Plugin getPluginContainer();
-	
-	public abstract Server getServer();
+	public Logger getLogger();
 	
 	
-	public abstract File getDataFolder();
+	public PermissionManager getManager();
+	public Plugin getPluginContainer();
 	
-	public abstract InputStream getResource(String fileName);
+	public Server getServer();
 	
-	public abstract void saveResource(String resourcePath);
-	public abstract void saveResource(String resourcePath, boolean replace);
 	
+	public File getDataFolder();
+	
+	public InputStream getResource(String fileName);
+	
+	public void saveResource(String resourcePath);
+	public void saveResource(String resourcePath, boolean replace);
+	
+	public void onLoad();
+	public void onEnable();
+	public void onDisable();
+	
+	public boolean isEnabled();
 	
 }
