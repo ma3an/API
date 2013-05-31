@@ -9,7 +9,7 @@ public final class ModuleLogger extends Logger {
 
 	protected ModuleLogger(PermissionModule module) {
 		super(module.getClass().getCanonicalName(), null);
-		this.setParent(module.getManager().getLogger());
+		this.setParent(module.getPermissionManager().getLogger());
 		
 		this.prefix = new StringBuilder().append("[").append(module.getName()).append("]").toString();
 		this.setLevel(Level.ALL);

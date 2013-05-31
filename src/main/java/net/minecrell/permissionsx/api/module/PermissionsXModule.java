@@ -10,12 +10,19 @@ import org.bukkit.plugin.Plugin;
 import net.minecrell.permissionsx.api.PermissionManager;
 
 public class PermissionsXModule implements PermissionModule {
+	
+	// TODO: Javadocs :(
+	
 	private PermissionManager permissionManager;
+	
+	private ModuleLoader loader;
 	
 	private String moduleName;
 	private ModuleLogger logger;
 	
 	private boolean initialized, isEnabled;
+	
+	private File file, dataFolder;
 	
 	@Override
 	public String getName() {
@@ -27,7 +34,31 @@ public class PermissionsXModule implements PermissionModule {
 		return logger;
 	}
 	
+	@Override
+	public final ModuleLoader getModuleLoader() {
+		return loader;
+	}
 	
+	protected final void initialize(ModuleLoader loader, PermissionManager permissionManager, String moduleName, File file, File dataFolder) {
+		if (!initialized) {
+			this.initialized = true;
+			
+			this.loader = loader;
+			
+			this.moduleName = moduleName;
+			
+			this.permissionManager = permissionManager;
+			
+			this.file = file;
+			this.dataFolder = dataFolder;
+			
+			this.logger = new ModuleLogger(this);
+		}
+	}
+	
+    public final boolean isInitialized() {
+        return initialized;
+    }
 
 	@Override
 	public void onEnable() {}
@@ -54,25 +85,27 @@ public class PermissionsXModule implements PermissionModule {
 	
 	
 	@Override
-	public PermissionManager getManager() {
+	public final PermissionManager getPermissionManager() {
 		return permissionManager;
 	}
-	
 	@Override
 	public final Plugin getPluginContainer() {
-		if (!initialized) return null;
+		if (permissionManager == null) return null;
 		return permissionManager.getContainer();
 	}
-	
 	@Override
 	public final Server getServer() {
-		return permissionManager.gets
+		if (permissionManager == null) return null;
+		return permissionManager.getServer();
+	}
+	
+	protected final File getFile() {
+		return file;
 	}
 	
 	@Override
 	public final File getDataFolder() {
-		// TODO Auto-generated method stub
-		return null;
+		return dataFolder;
 	}
 	
 	@Override

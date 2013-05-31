@@ -18,7 +18,7 @@ public interface PermissionModule {
 	public Logger getLogger();
 	
 	
-	public PermissionManager getManager();
+	public PermissionManager getPermissionManager();
 	public Plugin getPluginContainer();
 	
 	public Server getServer();
@@ -31,10 +31,10 @@ public interface PermissionModule {
 	public void saveResource(String resourcePath);
 	public void saveResource(String resourcePath, boolean replace);
 	
-	public void onLoad();
 	public void onEnable();
 	public void onDisable();
 	
 	public boolean isEnabled();
 	
+	public ModuleLoader getModuleLoader();
 }
