@@ -1,7 +1,6 @@
 package net.minecrell.permissionsx.api.module;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Logger;
 
@@ -10,7 +9,7 @@ import org.bukkit.plugin.Plugin;
 
 import net.minecrell.permissionsx.api.PermissionManager;
 
-public interface PermissionModule {
+public interface PermissionModule extends Plugin {
 	
 	// TODO: Javadocs
 	
@@ -28,10 +27,10 @@ public interface PermissionModule {
 	
 	public File getDataFolder();
 	
-	public InputStream getResource(String fileName) throws IOException;
+	public InputStream getResource(String fileName);
 	
-	public boolean saveResource(String resourcePath) throws IOException;
-	public boolean saveResource(String resourcePath, boolean replace) throws IOException;
+	public void saveResource(String resourcePath);
+	public void saveResource(String resourcePath, boolean replace);
 	
 	public void onEnable();
 	public void onDisable();

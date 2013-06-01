@@ -3,10 +3,19 @@ package net.minecrell.permissionsx.api.module;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.bukkit.Server;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginDescriptionFile;
+import org.bukkit.plugin.PluginLoader;
+
+import com.avaje.ebean.EbeanServer;
 
 import net.minecrell.permissionsx.api.PermissionManager;
 
@@ -121,18 +130,93 @@ public class PermissionsXModule implements PermissionModule {
 	}
 	
 	@Override
-	public InputStream getResource(String fileName) throws IOException {
-		return this.getModuleLoader().getResource(this, fileName);
+	public final InputStream getResource(String fileName) {
+		try {
+			return this.getModuleLoader().getResource(this, fileName);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
 	@Override
-	public boolean saveResource(String resourcePath) throws IOException {
-		return this.saveResource(resourcePath, true);
+	public final void saveResource(String resourcePath) {
+		this.saveResource(resourcePath, true);
 	}
 	
 	@Override
-	public boolean saveResource(String resourcePath, boolean replace) throws IOException {
-		return this.getModuleLoader().saveResource(this, resourcePath, replace);
+	public final void saveResource(String resourcePath, boolean replace) {
+		try {
+			this.getModuleLoader().saveResource(this, resourcePath, replace);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public FileConfiguration getConfig() {
+		return this.getPluginContainer().getConfig();
+	}
+
+	@Override
+	public EbeanServer getDatabase() {
+		return this.getPluginContainer().getDatabase();
+	}
+
+	@Override
+	public ChunkGenerator getDefaultWorldGenerator(String worldName, String id) {
+		return this.getPluginContainer().getDefaultWorldGenerator(worldName, id);
+	}
+
+	@Override
+	public final PluginDescriptionFile getDescription() {
+		return this.getPluginContainer().getDescription();
+	}
+
+	@Override
+	public final PluginLoader getPluginLoader() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public final boolean isNaggable() {
+		return this.getPluginContainer().isNaggable();
+	}
+
+	@Override
+	public final void onLoad() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void reloadConfig() {
+		this.getPluginContainer().reloadConfig();
+	}
+
+	@Override
+	public void saveConfig() {
+		this.getPluginContainer().saveConfig();
+	}
+
+	@Override
+	public void saveDefaultConfig() {
+		this.getPluginContainer().saveDefaultConfig();
+	}
+
+	@Override
+	public void setNaggable(boolean canNag) {
+		this.getPluginContainer().setNaggable(canNag);
+	}
+
+	@Override
+	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
+		return this.getPluginContainer().onTabComplete(sender, cmd, alias, args);
+	}
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		return this.getPluginContainer().onCommand(sender, cmd, label, args);
 	}
 
 }
