@@ -1,6 +1,7 @@
 package net.minecrell.permissionsx.api.module;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Logger;
 
@@ -14,7 +15,8 @@ public class PermissionsXModule implements PermissionModule {
 	// TODO: Javadocs :(
 	
 	private ModuleManager moduleManager;	
-	private ModuleLoader loader;
+	private PermissionsXModuleLoader moduleLoader;
+	private ClassLoader classLoader;
 	
 	private String moduleName;
 	private ModuleLogger logger;
@@ -40,14 +42,20 @@ public class PermissionsXModule implements PermissionModule {
 	
 	@Override
 	public final ModuleLoader getModuleLoader() {
-		return loader;
+		return moduleLoader;
 	}
 	
-	protected final void initialize(ModuleLoader loader, ModuleManager moduleManager, String moduleName, File file, File dataFolder) {
+	final ClassLoader getClassLoader() {
+		return classLoader;
+	}
+	
+	protected final void initialize(PermissionsXModuleLoader loader, ClassLoader classLoader, ModuleManager moduleManager, String moduleName, File file, File dataFolder) {
 		if (!initialized) {
 			this.initialized = true;
 			
-			this.loader = loader;
+			this.moduleLoader = loader;
+			this.classLoader = classLoader;
+			
 			this.moduleManager = moduleManager;
 			
 			this.moduleName = moduleName;
@@ -113,21 +121,18 @@ public class PermissionsXModule implements PermissionModule {
 	}
 	
 	@Override
-	public InputStream getResource(String fileName) {
-		// TODO Auto-generated method stub
-		return null;
+	public InputStream getResource(String fileName) throws IOException {
+		return this.getModuleLoader().getResource(this, fileName);
 	}
 	
 	@Override
-	public void saveResource(String resourcePath) {
-		// TODO Auto-generated method stub
-		
+	public boolean saveResource(String resourcePath) throws IOException {
+		return this.saveResource(resourcePath, true);
 	}
 	
 	@Override
-	public void saveResource(String resourcePath, boolean replace) {
-		// TODO Auto-generated method stub
-		
+	public boolean saveResource(String resourcePath, boolean replace) throws IOException {
+		return this.getModuleLoader().saveResource(this, resourcePath, replace);
 	}
 
 }

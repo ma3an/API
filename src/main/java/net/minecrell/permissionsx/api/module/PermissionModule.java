@@ -1,6 +1,7 @@
 package net.minecrell.permissionsx.api.module;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Logger;
 
@@ -27,10 +28,10 @@ public interface PermissionModule {
 	
 	public File getDataFolder();
 	
-	public InputStream getResource(String fileName);
+	public InputStream getResource(String fileName) throws IOException;
 	
-	public void saveResource(String resourcePath);
-	public void saveResource(String resourcePath, boolean replace);
+	public boolean saveResource(String resourcePath) throws IOException;
+	public boolean saveResource(String resourcePath, boolean replace) throws IOException;
 	
 	public void onEnable();
 	public void onDisable();

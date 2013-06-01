@@ -23,7 +23,7 @@ public interface ModuleManager {
 	public void enableModule(PermissionModule module);
 	public void disableModule(PermissionModule module);
 	
-	public boolean isModuleEnabled(String name);
+	public boolean isModuleEnabled(String moduleName);
 	public boolean isModuleEnabled(PermissionModule module);
 	
 	public void disableModules();

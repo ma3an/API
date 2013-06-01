@@ -1,17 +1,23 @@
 package net.minecrell.permissionsx.api.module;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import net.minecrell.permissionsx.api.PermissionManager;
 
+import org.bukkit.Server;
 import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.UnknownDependencyException;
 
 public final class PermissionsXModuleManager implements ModuleManager {
-	
-	// TODO: Implement ModuleManager
-	
 	private final PermissionManager permissionManager;
+	
+	private final Map<String, PermissionModule> modules = new HashMap<String, PermissionModule>();
 	
 	public PermissionsXModuleManager(PermissionManager permissionManager) {
 		this.permissionManager = permissionManager;
@@ -22,26 +28,36 @@ public final class PermissionsXModuleManager implements ModuleManager {
 		return permissionManager;
 	}
 	
+	private Logger getLogger() {
+		return this.getPermissionManager().getLogger();
+	}
+	
+	private Server getServer() {
+		return this.getPermissionManager().getServer();
+	}
+	
+	private PluginManager getPluginManager() {
+		return this.getServer().getPluginManager();
+	}
+	
 	private Plugin getPluginContainer() {
-		return permissionManager.getContainer();
+		return this.getPermissionManager().getContainer();
 	}
 
 	@Override
 	public PermissionModule getModule(String moduleName) {
-		// TODO Auto-generated method stub
-		return null;
+		return modules.get(moduleName);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <Module> Module getModule(String moduleName, Class<? extends PermissionModule> moduleClass) {
-		// TODO Auto-generated method stub
-		return null;
+		return (Module) this.getModule(moduleName);
 	}
 
 	@Override
 	public PermissionModule[] getModules() {
-		// TODO Auto-generated method stub
-		return null;
+		return modules.values().toArray(new PermissionModule[modules.values().size()]);
 	}
 
 	@Override
@@ -58,50 +74,94 @@ public final class PermissionsXModuleManager implements ModuleManager {
 
 	@Override
 	public void enableModule(PermissionModule module) {
-		// TODO Auto-generated method stub
-		
+		if (!module.isEnabled()) {
+			// TODO: Commands
+			
+			try {
+				module.getModuleLoader().enableModule(module);
+			} catch (Throwable t) {
+				this.getLogger().log(Level.SEVERE, "Error occured (in the module loader) while enabling " + module.getName() + " (Is it up to date?)", t);
+			}
+		}
 	}
 
 	@Override
 	public void disableModule(PermissionModule module) {
-		// TODO Auto-generated method stub
-		
+		if (module.isEnabled()) {
+			String moduleName = module.getName();
+			
+			try {
+				module.getModuleLoader().disableModule(module);
+			} catch (Throwable t) {
+				this.getLogger().log(Level.SEVERE, "Error occurred while disabling " + moduleName + " (Is it up to date?)", t);
+			}
+			
+			try {
+				// TODO: How to do this?
+				// this.getServer().getScheduler().cancelTasks(plugin);
+			} catch (Throwable t) {
+				this.getLogger().log(Level.SEVERE, "Error occurred while cancelling tasks for " + moduleName + " (Is it up to date?)", t);
+			}
+			
+			try {
+				// TODO: How to do this?
+				// this.getServer().getServicesManager().unregisterAll(plugin);
+			} catch (Throwable t) {
+				this.getLogger().log(Level.SEVERE, "Error occurred while unregistering services for " + moduleName + " (Is it up to date?)", t);
+			}
+			
+			try {
+				// TODO: How to do this?
+				// HandlerList.unregisterAll(plugin);
+			} catch (Throwable t) {
+				this.getLogger().log(Level.SEVERE, "Error occurred while unregistering events for " + moduleName + " (Is it up to date?)", t);
+			}
+			
+            try {
+            	// TODO: How to do this?
+                // this.getServer().getMessenger().unregisterIncomingPluginChannel(plugin);
+                // this.getServer().getMessenger().unregisterOutgoingPluginChannel(plugin);
+            } catch(Throwable t) {
+                this.getLogger().log(Level.SEVERE, "Error occurred while unregistering plugin channels for " + moduleName + " (Is it up to date?)", t);
+            }
+		}
 	}
 
 	@Override
-	public boolean isModuleEnabled(String name) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isModuleEnabled(String moduleName) {
+		return this.isModuleEnabled(this.getModule(moduleName));
 	}
 
 	@Override
 	public boolean isModuleEnabled(PermissionModule module) {
-		// TODO Auto-generated method stub
+		if ((module != null) && modules.containsValue(module)) {
+			return module.isEnabled();
+		}
+		
 		return false;
 	}
 
 	@Override
 	public void disableModules() {
-		// TODO Auto-generated method stub
-		
+		for (PermissionModule module : modules.values()) {
+			this.disableModule(module);
+		}
 	}
 
 	@Override
 	public void clearModules() {
-		// TODO Auto-generated method stub
-		
+		this.disableModules();
+		modules.clear();
 	}
 
 	@Override
 	public void callEvent(Event event) throws IllegalStateException {
-		// TODO Auto-generated method stub
-		
+		this.getPluginManager().callEvent(event);		
 	}
 
 	@Override
 	public void registerEvents(Listener listener, PermissionModule module) {
-		// TODO Auto-generated method stub
-		
+		this.getPluginManager().registerEvents(listener, this.getPluginContainer());
 	}
 
 }
