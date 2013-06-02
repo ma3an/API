@@ -9,6 +9,7 @@ import net.minecrell.permissionsx.api.PermissionManager;
 
 import org.bukkit.Server;
 import org.bukkit.event.Event;
+import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
@@ -38,10 +39,6 @@ public final class PermissionsXModuleManager implements ModuleManager {
 	
 	private PluginManager getPluginManager() {
 		return this.getServer().getPluginManager();
-	}
-	
-	private Plugin getPluginContainer() {
-		return this.getPermissionManager().getContainer();
 	}
 
 	@Override
@@ -97,30 +94,26 @@ public final class PermissionsXModuleManager implements ModuleManager {
 			}
 			
 			try {
-				// TODO: How to do this?
-				// this.getServer().getScheduler().cancelTasks(plugin);
+				this.getServer().getScheduler().cancelTasks(module);
 			} catch (Throwable t) {
 				this.getLogger().log(Level.SEVERE, "Error occurred while cancelling tasks for " + moduleName + " (Is it up to date?)", t);
 			}
 			
 			try {
-				// TODO: How to do this?
-				// this.getServer().getServicesManager().unregisterAll(plugin);
+				this.getServer().getServicesManager().unregisterAll(module);
 			} catch (Throwable t) {
 				this.getLogger().log(Level.SEVERE, "Error occurred while unregistering services for " + moduleName + " (Is it up to date?)", t);
 			}
 			
 			try {
-				// TODO: How to do this?
-				// HandlerList.unregisterAll(plugin);
+				HandlerList.unregisterAll(module);
 			} catch (Throwable t) {
 				this.getLogger().log(Level.SEVERE, "Error occurred while unregistering events for " + moduleName + " (Is it up to date?)", t);
 			}
 			
             try {
-            	// TODO: How to do this?
-                // this.getServer().getMessenger().unregisterIncomingPluginChannel(plugin);
-                // this.getServer().getMessenger().unregisterOutgoingPluginChannel(plugin);
+                this.getServer().getMessenger().unregisterIncomingPluginChannel(module);
+                this.getServer().getMessenger().unregisterOutgoingPluginChannel(module);
             } catch(Throwable t) {
                 this.getLogger().log(Level.SEVERE, "Error occurred while unregistering plugin channels for " + moduleName + " (Is it up to date?)", t);
             }
@@ -161,7 +154,7 @@ public final class PermissionsXModuleManager implements ModuleManager {
 
 	@Override
 	public void registerEvents(Listener listener, PermissionModule module) {
-		this.getPluginManager().registerEvents(listener, this.getPluginContainer());
+		this.getPluginManager().registerEvents(listener, module);
 	}
 
 }
