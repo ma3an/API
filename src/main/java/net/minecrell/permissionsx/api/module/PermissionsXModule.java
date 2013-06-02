@@ -6,6 +6,9 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.logging.Logger;
 
+import net.minecrell.permissionsx.api.PermissionManager;
+import net.minecrell.permissionsx.api.PermissionPlugin;
+
 import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -16,140 +19,143 @@ import org.bukkit.plugin.PluginLoader;
 
 import com.avaje.ebean.EbeanServer;
 
-import net.minecrell.permissionsx.api.PermissionManager;
-import net.minecrell.permissionsx.api.PermissionPlugin;
-
 public class PermissionsXModule implements PermissionModule {
-	
+
 	// TODO: Javadocs :(
-	
-	private ModuleManager moduleManager;	
+
+	private ModuleManager moduleManager;
 	private PermissionsXModuleLoader moduleLoader;
 	private ClassLoader classLoader;
-	
+
 	private String moduleName;
 	private ModuleLogger logger;
-	
+
 	private boolean initialized, isEnabled;
-	
+
 	private File file, dataFolder;
-	
+
 	@Override
 	public String getName() {
 		return moduleName;
 	}
-	
+
 	@Override
 	public Logger getLogger() {
 		return logger;
 	}
-	
+
 	@Override
 	public final ModuleManager getModuleManager() {
 		return moduleManager;
 	}
-	
+
 	@Override
 	public final ModuleLoader getModuleLoader() {
 		return moduleLoader;
 	}
-	
+
 	final ClassLoader getClassLoader() {
 		return classLoader;
 	}
-	
-	protected final void initialize(PermissionsXModuleLoader loader, ClassLoader classLoader, ModuleManager moduleManager, String moduleName, File file, File dataFolder) {
+
+	protected final void initialize(final PermissionsXModuleLoader loader, final ClassLoader classLoader, final ModuleManager moduleManager, final String moduleName, final File file, final File dataFolder) {
 		if (!initialized) {
-			this.initialized = true;
-			
-			this.moduleLoader = loader;
+			initialized = true;
+
+			moduleLoader = loader;
 			this.classLoader = classLoader;
-			
+
 			this.moduleManager = moduleManager;
-			
+
 			this.moduleName = moduleName;
-			
+
 			this.file = file;
 			this.dataFolder = dataFolder;
-			
-			this.logger = new ModuleLogger(this);
+
+			logger = new ModuleLogger(this);
 		}
 	}
-	
-    public final boolean isInitialized() {
-        return initialized;
-    }
+
+	public final boolean isInitialized() {
+		return initialized;
+	}
 
 	@Override
-	public void onEnable() {}
+	public void onEnable() {
+	}
 
 	@Override
-	public void onDisable() {}
+	public void onDisable() {
+	}
 
 	@Override
 	public final boolean isEnabled() {
 		return isEnabled;
 	}
-	
+
 	protected final void setEnabled(final boolean enabled) {
 		if (isEnabled != enabled) {
 			isEnabled = enabled;
-			
+
 			if (isEnabled) {
-				onEnable();
+				this.onEnable();
 			} else {
-				onDisable();
+				this.onDisable();
 			}
 		}
 	}
-	
-	
+
 	@Override
 	public final PermissionManager getPermissionManager() {
-		if (this.getModuleManager() == null) return null;
+		if (this.getModuleManager() == null)
+			return null;
 		return this.getModuleManager().getPermissionManager();
 	}
+
 	@Override
 	public final PermissionPlugin getPluginContainer() {
-		if (this.getPermissionManager() == null) return null;
+		if (this.getPermissionManager() == null)
+			return null;
 		return this.getPermissionManager().getContainer();
 	}
+
 	@Override
 	public final Server getServer() {
-		if (this.getPermissionManager() == null) return null;
+		if (this.getPermissionManager() == null)
+			return null;
 		return this.getPermissionManager().getServer();
 	}
-	
+
 	protected final File getFile() {
 		return file;
 	}
-	
+
 	@Override
 	public final File getDataFolder() {
 		return dataFolder;
 	}
-	
+
 	@Override
-	public final InputStream getResource(String fileName) {
+	public final InputStream getResource(final String fileName) {
 		try {
 			return this.getModuleLoader().getResource(this, fileName);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
-	
+
 	@Override
-	public final void saveResource(String resourcePath) {
+	public final void saveResource(final String resourcePath) {
 		this.saveResource(resourcePath, true);
 	}
-	
+
 	@Override
-	public final void saveResource(String resourcePath, boolean replace) {
+	public final void saveResource(final String resourcePath, final boolean replace) {
 		try {
 			this.getModuleLoader().saveResource(this, resourcePath, replace);
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -165,7 +171,7 @@ public class PermissionsXModule implements PermissionModule {
 	}
 
 	@Override
-	public final ChunkGenerator getDefaultWorldGenerator(String worldName, String id) {
+	public final ChunkGenerator getDefaultWorldGenerator(final String worldName, final String id) {
 		return this.getPluginContainer().getDefaultWorldGenerator(worldName, id);
 	}
 
@@ -205,17 +211,17 @@ public class PermissionsXModule implements PermissionModule {
 	}
 
 	@Override
-	public final void setNaggable(boolean canNag) {
+	public final void setNaggable(final boolean canNag) {
 		this.getPluginContainer().setNaggable(canNag);
 	}
 
 	@Override
-	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
+	public List<String> onTabComplete(final CommandSender sender, final Command cmd, final String alias, final String[] args) {
 		return this.getPluginContainer().onTabComplete(sender, cmd, alias, args);
 	}
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+	public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
 		return this.getPluginContainer().onCommand(sender, cmd, label, args);
 	}
 

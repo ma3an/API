@@ -9,10 +9,12 @@ import org.bukkit.plugin.UnknownDependencyException;
 public interface ModuleLoader {
 
 	public PermissionModule loadModule(File file) throws InvalidModuleException, UnknownDependencyException;
-	
+
 	public void enableModule(PermissionModule module);
+
 	public void disableModule(PermissionModule module);
-	
+
 	public InputStream getResource(PermissionModule module, String fileName) throws IOException;
+
 	public boolean saveResource(PermissionModule module, String resourcePath, boolean replace) throws IOException;
 }

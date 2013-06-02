@@ -16,10 +16,10 @@ import org.bukkit.plugin.UnknownDependencyException;
 
 public final class PermissionsXModuleManager implements ModuleManager {
 	private final PermissionManager permissionManager;
-	
+
 	private final Map<String, PermissionModule> modules = new HashMap<String, PermissionModule>();
-	
-	public PermissionsXModuleManager(PermissionManager permissionManager) {
+
+	public PermissionsXModuleManager(final PermissionManager permissionManager) {
 		this.permissionManager = permissionManager;
 	}
 
@@ -27,27 +27,27 @@ public final class PermissionsXModuleManager implements ModuleManager {
 	public PermissionManager getPermissionManager() {
 		return permissionManager;
 	}
-	
+
 	private Logger getLogger() {
 		return this.getPermissionManager().getLogger();
 	}
-	
+
 	private Server getServer() {
 		return this.getPermissionManager().getServer();
 	}
-	
+
 	private PluginManager getPluginManager() {
 		return this.getServer().getPluginManager();
 	}
 
 	@Override
-	public PermissionModule getModule(String moduleName) {
+	public PermissionModule getModule(final String moduleName) {
 		return modules.get(moduleName);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <Module> Module getModule(String moduleName, Class<? extends PermissionModule> moduleClass) {
+	public <Module> Module getModule(final String moduleName, final Class<? extends PermissionModule> moduleClass) {
 		return (Module) this.getModule(moduleName);
 	}
 
@@ -57,7 +57,7 @@ public final class PermissionsXModuleManager implements ModuleManager {
 	}
 
 	@Override
-	public PermissionModule loadModule(String fileName) throws InvalidModuleException, UnknownDependencyException {
+	public PermissionModule loadModule(final String fileName) throws InvalidModuleException, UnknownDependencyException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -69,73 +69,72 @@ public final class PermissionsXModuleManager implements ModuleManager {
 	}
 
 	@Override
-	public void enableModule(PermissionModule module) {
+	public void enableModule(final PermissionModule module) {
 		if (!module.isEnabled()) {
 			// TODO: Commands
-			
+
 			try {
 				module.getModuleLoader().enableModule(module);
-			} catch (Throwable t) {
+			} catch (final Throwable t) {
 				this.getLogger().log(Level.SEVERE, "Error occured (in the module loader) while enabling " + module.getName() + " (Is it up to date?)", t);
 			}
 		}
 	}
 
 	@Override
-	public void disableModule(PermissionModule module) {
+	public void disableModule(final PermissionModule module) {
 		if (module.isEnabled()) {
-			String moduleName = module.getName();
-			
+			final String moduleName = module.getName();
+
 			try {
 				module.getModuleLoader().disableModule(module);
-			} catch (Throwable t) {
+			} catch (final Throwable t) {
 				this.getLogger().log(Level.SEVERE, "Error occurred while disabling " + moduleName + " (Is it up to date?)", t);
 			}
-			
+
 			try {
 				this.getServer().getScheduler().cancelTasks(module);
-			} catch (Throwable t) {
+			} catch (final Throwable t) {
 				this.getLogger().log(Level.SEVERE, "Error occurred while cancelling tasks for " + moduleName + " (Is it up to date?)", t);
 			}
-			
+
 			try {
 				this.getServer().getServicesManager().unregisterAll(module);
-			} catch (Throwable t) {
+			} catch (final Throwable t) {
 				this.getLogger().log(Level.SEVERE, "Error occurred while unregistering services for " + moduleName + " (Is it up to date?)", t);
 			}
-			
+
 			try {
 				HandlerList.unregisterAll(module);
-			} catch (Throwable t) {
+			} catch (final Throwable t) {
 				this.getLogger().log(Level.SEVERE, "Error occurred while unregistering events for " + moduleName + " (Is it up to date?)", t);
 			}
-			
-            try {
-                this.getServer().getMessenger().unregisterIncomingPluginChannel(module);
-                this.getServer().getMessenger().unregisterOutgoingPluginChannel(module);
-            } catch(Throwable t) {
-                this.getLogger().log(Level.SEVERE, "Error occurred while unregistering plugin channels for " + moduleName + " (Is it up to date?)", t);
-            }
+
+			try {
+				this.getServer().getMessenger().unregisterIncomingPluginChannel(module);
+				this.getServer().getMessenger().unregisterOutgoingPluginChannel(module);
+			} catch (final Throwable t) {
+				this.getLogger().log(Level.SEVERE, "Error occurred while unregistering plugin channels for " + moduleName + " (Is it up to date?)", t);
+			}
 		}
 	}
 
 	@Override
-	public boolean isModuleEnabled(String moduleName) {
+	public boolean isModuleEnabled(final String moduleName) {
 		return this.isModuleEnabled(this.getModule(moduleName));
 	}
 
 	@Override
-	public boolean isModuleEnabled(PermissionModule module) {
-		if ((module != null) && modules.containsValue(module)) {
+	public boolean isModuleEnabled(final PermissionModule module) {
+		if ((module != null) && modules.containsValue(module))
 			return module.isEnabled();
-		}
-		
+
 		return false;
 	}
 
 	@Override
 	public void disableModules() {
-		for (PermissionModule module : modules.values()) {
+		for (final PermissionModule module : modules.values()) {
 			this.disableModule(module);
 		}
 	}
@@ -147,12 +146,12 @@ public final class PermissionsXModuleManager implements ModuleManager {
 	}
 
 	@Override
-	public void callEvent(Event event) throws IllegalStateException {
-		this.getPluginManager().callEvent(event);		
+	public void callEvent(final Event event) throws IllegalStateException {
+		this.getPluginManager().callEvent(event);
 	}
 
 	@Override
-	public void registerEvents(Listener listener, PermissionModule module) {
+	public void registerEvents(final Listener listener, final PermissionModule module) {
 		this.getPluginManager().registerEvents(listener, module);
 	}
 

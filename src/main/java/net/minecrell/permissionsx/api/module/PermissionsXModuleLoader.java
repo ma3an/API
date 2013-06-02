@@ -17,88 +17,88 @@ import org.bukkit.plugin.UnknownDependencyException;
 public class PermissionsXModuleLoader implements ModuleLoader {
 
 	@Override
-	public PermissionsXModule loadModule(File file) throws InvalidModuleException, UnknownDependencyException {
+	public PermissionsXModule loadModule(final File file) throws InvalidModuleException, UnknownDependencyException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void enableModule(PermissionModule module) {
+	public void enableModule(final PermissionModule module) {
 		this.checkModule(module);
-		
+
 		if (!module.isEnabled()) {
-			String moduleName = module.getName();
+			final String moduleName = module.getName();
 			module.getLogger().info("Enabling " + moduleName + "...");
-			
-			PermissionsXModule xModule = (PermissionsXModule) module;
-			
+
+			final PermissionsXModule xModule = (PermissionsXModule) module;
+
 			try {
 				xModule.setEnabled(true);
-			} catch (Throwable t) {
-				 module.getLogger().log(Level.SEVERE, "Error occurred while enabling " + moduleName + " (Is it up to date?)", t);
+			} catch (final Throwable t) {
+				module.getLogger().log(Level.SEVERE, "Error occurred while enabling " + moduleName + " (Is it up to date?)", t);
 			}
-			
+
 			module.getModuleManager().callEvent(new ModuleEnableEvent(module));
 		}
 	}
 
 	@Override
-	public void disableModule(PermissionModule module) {
+	public void disableModule(final PermissionModule module) {
 		this.checkModule(module);
 		// TODO: Disable modules
 	}
-	
-	private ClassLoader getClassLoader(PermissionModule module) {
+
+	private ClassLoader getClassLoader(final PermissionModule module) {
 		this.checkModule(module);
 		return ((PermissionsXModule) module).getClassLoader();
 	}
 
 	@Override
-	public InputStream getResource(PermissionModule module, String fileName) throws IOException {
+	public InputStream getResource(final PermissionModule module, final String fileName) throws IOException {
 		Validate.notEmpty(fileName);
-		
-		URL url = this.getClassLoader(module).getResource(fileName);
-		
+
+		final URL url = this.getClassLoader(module).getResource(fileName);
+
 		if (url == null)
 			return null;
-		
-		URLConnection connection = url.openConnection();
+
+		final URLConnection connection = url.openConnection();
 		connection.setUseCaches(false);
 		return connection.getInputStream();
 	}
 
 	@Override
-	public boolean saveResource(PermissionModule module, String resourcePath, boolean replace) throws IOException {
+	public boolean saveResource(final PermissionModule module, String resourcePath, final boolean replace) throws IOException {
 		Validate.notEmpty(resourcePath);
 		resourcePath = resourcePath.replace('\\', '/');
-		
+
 		this.checkModule(module);
-		PermissionsXModule xModule = (PermissionsXModule) module;
-		
-		InputStream i = this.getResource(module, resourcePath);
+		final PermissionsXModule xModule = (PermissionsXModule) module;
+
+		final InputStream i = this.getResource(module, resourcePath);
 		if (i == null)
 			throw new IllegalArgumentException("The embedded resource '" + resourcePath + "' cannot be found in " + xModule.getFile());
-		
-		File outFile = new File(xModule.getDataFolder(), resourcePath);
+
+		final File outFile = new File(xModule.getDataFolder(), resourcePath);
 		outFile.mkdirs();
-		
+
 		if (!outFile.exists() || replace) {
-			OutputStream o = new FileOutputStream(outFile);
-            byte[] buf = new byte[1024];
-            int len;
-            while ((len = i.read(buf)) > 0) {
-                o.write(buf, 0, len);
-            }
-            o.close();
-            i.close();
-            
-            return true;
+			final OutputStream o = new FileOutputStream(outFile);
+			final byte[] buf = new byte[1024];
+			int len;
+			while ((len = i.read(buf)) > 0) {
+				o.write(buf, 0, len);
+			}
+			o.close();
+			i.close();
+
+			return true;
 		}
-		
+
 		return false;
 	}
-	
-	private void checkModule(PermissionModule module) {
+
+	private void checkModule(final PermissionModule module) {
 		Validate.isTrue(module instanceof PermissionsXModule, "Module is not associated with this ModuleLoader");
 	}
 

@@ -10,7 +10,7 @@ import net.minecrell.permissionsx.api.entity.OfflinePermissionUser;
  */
 public abstract class OfflinePermissionUserEvent extends PermissionEvent {
 	private final OfflinePermissionUser user;
-	
+
 	/**
 	 * Creates a permission user related event.
 	 * @param user The event related permission user (can be offline)
@@ -18,7 +18,7 @@ public abstract class OfflinePermissionUserEvent extends PermissionEvent {
 	public OfflinePermissionUserEvent(final OfflinePermissionUser user) {
 		this.user = user;
 	}
-	
+
 	/**
 	 * Returns the permission user involved in this event
 	 * @return OfflinePermissionUser of this event

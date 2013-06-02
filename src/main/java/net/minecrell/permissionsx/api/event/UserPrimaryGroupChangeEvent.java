@@ -23,7 +23,7 @@ public class UserPrimaryGroupChangeEvent extends OfflinePermissionUserEvent impl
 	 * @param previous Previous permission group of the permission user
 	 * @param current New permission group of the permission user
 	 */
-	public UserPrimaryGroupChangeEvent(OfflinePermissionUser user, PermissionGroup previous, PermissionGroup current) {
+	public UserPrimaryGroupChangeEvent(final OfflinePermissionUser user, final PermissionGroup previous, final PermissionGroup current) {
 		super(user);
 		this.previous = previous;
 		this.current = current;
@@ -45,7 +45,8 @@ public class UserPrimaryGroupChangeEvent extends OfflinePermissionUserEvent impl
 		return current;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see org.bukkit.event.Cancellable#isCancelled()
 	 */
 	@Override
@@ -53,15 +54,17 @@ public class UserPrimaryGroupChangeEvent extends OfflinePermissionUserEvent impl
 		return cancelled;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see org.bukkit.event.Cancellable#setCancelled(boolean)
 	 */
 	@Override
-	public void setCancelled(boolean cancelled) {
+	public void setCancelled(final boolean cancelled) {
 		this.cancelled = cancelled;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see org.bukkit.event.Event#getHandlers()
 	 */
 	@Override

@@ -41,50 +41,51 @@ public interface PermissionManager {
 	 * @return the current Logger
 	 */
 	public Logger getLogger();
-	
+
 	/**
-	 * Returns the Name of the PermissionsX implementation 
+	 * Returns the Name of the PermissionsX implementation
 	 * @return by default: <code>PermissionsX</code>
 	 */
 	public String getName();
-	
+
 	/**
 	 * Returns the Version of the PermissionsX implementation
 	 * @return the Version by default in the Format: <br>
-	 * <code>{major version}.{minor version}.{patch version}</code>
+	 *         <code>{major version}.{minor version}.{patch version}</code>
 	 */
 	public String getVersion();
-	
+
 	/**
 	 * Returns the Plugin the Permission Manager is integrated to.
 	 * @return the Plugin instance
 	 */
 	public PermissionPlugin getContainer();
-	
+
 	// TODO: Javadocs
 	public Server getServer();
-	
+
 	public ModuleManager getModuleManager();
-	
+
 	/**
 	 * Enables the Permission Manager
 	 * @throws java.lang.IllegalStateException if the Plugin already enabled.
 	 */
-	public void enable() throws IllegalStateException ;
-	
+	public void enable() throws IllegalStateException;
+
 	/**
 	 * Disables the Permission Manager
 	 * @throws IllegalStateException
 	 */
 	public void disable() throws IllegalStateException;
-	
+
 	/**
 	 * Reload the Manager (e.g. Configuration Files)
-	 * @param everything if everything (e.g. Commands and Listeners should be reloaded to.
+	 * @param everything if everything (e.g. Commands and Listeners should be
+	 *            reloaded to.
 	 * @return true if the reload was successfull false otherwise
 	 */
 	public abstract boolean reload(boolean everything);
-	
+
 	/**
 	 * Returns a Specific User identified by his username.
 	 * @param name the Username you wan't to the the Player from
@@ -92,7 +93,7 @@ public interface PermissionManager {
 	 * @see net.minecrell.permissionsx.api.entity.PermissionUser
 	 */
 	public PermissionUser getUser(String name);
-	
+
 	/**
 	 * Returns a Specific User identified by his username.
 	 * @param name the Username you wan't to the the Player from
@@ -100,7 +101,7 @@ public interface PermissionManager {
 	 * @see net.minecrell.permissionsx.api.entity.PermissionUser
 	 */
 	public OfflinePermissionUser getOfflineUser(String name);
-	
+
 	/**
 	 * Returns a Specific Player identified by his username.
 	 * @param name the Username you wan't to the the Player from
@@ -108,24 +109,24 @@ public interface PermissionManager {
 	 * @see org.bukkit.entity.Player
 	 */
 	public Player getPlayer(String name);
-	
+
 	/**
 	 * Returns a Specific Group identified by it's Group name
 	 * @param name the Group name
 	 * @return the Group instance. null if the group couldnt be found.
 	 */
 	public PermissionGroup getGroup(String name);
-	
+
 	/**
 	 * Returns the Configuration File used to load the Preferences from.
 	 * @return the Config file instance never null
 	 */
 	public FileConfiguration getConfiguration();
-	
+
 	/**
-	 * Saves everything to the Disk. 
+	 * Saves everything to the Disk.
 	 * @throws java.lang.RuntimeException if a IOException occurs.
 	 */
 	public void saveAll();
-	
+
 }

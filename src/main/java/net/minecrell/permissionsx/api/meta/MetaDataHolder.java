@@ -13,17 +13,17 @@ public interface MetaDataHolder {
 	 * @param data the MetaData to set
 	 */
 	public abstract void setMetaData(MetaData data);
-	
+
 	/**
 	 * Checks if the Object has a Specfic MetaData set
 	 * @param data the MetaData to check
 	 * @return true if the Data is set false otherwise
 	 */
 	public abstract boolean hasMetaData(String data);
-	
+
 	/**
 	 * Returns a Specific MetaData. Identified by it's name.
-	 * @param name the Name 
+	 * @param name the Name
 	 * @return the MetaData null if not found.
 	 */
 	public abstract MetaData getMetaData(String name);
