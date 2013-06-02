@@ -2,15 +2,13 @@ package net.minecrell.permissionsx.api.event;
 
 import net.minecrell.permissionsx.api.entity.OfflinePermissionUser;
 
-import org.bukkit.event.Event;
-
 /**
  * Represents a permission user related event.
  * @author Minecrell
  * @since 0.0.1a
  * @version 0.0.1a
  */
-public abstract class OfflinePermissionUserEvent extends Event {
+public abstract class OfflinePermissionUserEvent extends PermissionEvent {
 	private final OfflinePermissionUser user;
 	
 	/**

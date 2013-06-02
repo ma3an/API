@@ -1,9 +1,9 @@
 package net.minecrell.permissionsx.api.event.module;
 
-import net.minecrell.permissionsx.api.event.PermissionsEvent;
+import net.minecrell.permissionsx.api.event.PermissionEvent;
 import net.minecrell.permissionsx.api.module.PermissionModule;
 
-public abstract class ModuleEvent extends PermissionsEvent {
+public abstract class ModuleEvent extends PermissionEvent {
 	private final PermissionModule module;
 	
 	public ModuleEvent(PermissionModule module) {
