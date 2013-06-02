@@ -27,7 +27,6 @@ import net.minecrell.permissionsx.api.module.ModuleManager;
 import org.bukkit.Server;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 
 /**
  * Main Interface to work with the PermissionX API
@@ -60,7 +59,7 @@ public interface PermissionManager {
 	 * Returns the Plugin the Permission Manager is integrated to.
 	 * @return the Plugin instance
 	 */
-	public Plugin getContainer();
+	public PermissionPlugin getContainer();
 	
 	// TODO: Javadocs
 	public Server getServer();

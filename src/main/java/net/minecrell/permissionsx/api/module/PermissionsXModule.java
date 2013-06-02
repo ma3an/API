@@ -11,13 +11,13 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.generator.ChunkGenerator;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginLoader;
 
 import com.avaje.ebean.EbeanServer;
 
 import net.minecrell.permissionsx.api.PermissionManager;
+import net.minecrell.permissionsx.api.PermissionPlugin;
 
 public class PermissionsXModule implements PermissionModule {
 	
@@ -110,7 +110,7 @@ public class PermissionsXModule implements PermissionModule {
 		return this.getModuleManager().getPermissionManager();
 	}
 	@Override
-	public final Plugin getPluginContainer() {
+	public final PermissionPlugin getPluginContainer() {
 		if (this.getPermissionManager() == null) return null;
 		return this.getPermissionManager().getContainer();
 	}

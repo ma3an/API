@@ -8,6 +8,7 @@ import org.bukkit.Server;
 import org.bukkit.plugin.Plugin;
 
 import net.minecrell.permissionsx.api.PermissionManager;
+import net.minecrell.permissionsx.api.PermissionPlugin;
 
 public interface PermissionModule extends Plugin {
 	
@@ -20,7 +21,7 @@ public interface PermissionModule extends Plugin {
 	public ModuleManager getModuleManager();
 	
 	public PermissionManager getPermissionManager();
-	public Plugin getPluginContainer();
+	public PermissionPlugin getPluginContainer();
 	
 	public Server getServer();
 	
