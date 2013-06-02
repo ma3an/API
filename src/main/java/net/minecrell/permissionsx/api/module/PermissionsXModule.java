@@ -165,7 +165,7 @@ public class PermissionsXModule implements PermissionModule {
 	}
 
 	@Override
-	public ChunkGenerator getDefaultWorldGenerator(String worldName, String id) {
+	public final ChunkGenerator getDefaultWorldGenerator(String worldName, String id) {
 		return this.getPluginContainer().getDefaultWorldGenerator(worldName, id);
 	}
 
@@ -176,7 +176,7 @@ public class PermissionsXModule implements PermissionModule {
 
 	@Override
 	public final PluginLoader getPluginLoader() {
-		throw new UnsupportedOperationException();
+		return this.getPluginContainer().getPluginLoader();
 	}
 
 	@Override
@@ -205,7 +205,7 @@ public class PermissionsXModule implements PermissionModule {
 	}
 
 	@Override
-	public void setNaggable(boolean canNag) {
+	public final void setNaggable(boolean canNag) {
 		this.getPluginContainer().setNaggable(canNag);
 	}
 
