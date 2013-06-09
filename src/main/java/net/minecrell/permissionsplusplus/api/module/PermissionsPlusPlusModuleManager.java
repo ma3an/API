@@ -126,7 +126,7 @@ public final class PermissionsPlusPlusModuleManager implements ModuleManager {
 
 	@Override
 	public boolean isModuleEnabled(final PermissionModule module) {
-		if ((module != null) && modules.containsValue(module))
+		if (module != null && modules.containsValue(module))
 			return module.isEnabled();
 
 		return false;
