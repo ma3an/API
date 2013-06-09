@@ -1,6 +1,6 @@
 /*
- * PermissionsX - PermissionsX Plugin Developer API
- * Copyright (C) 2013 PermissionsX-Team
+ * PermissionsPlusPlus - PermissionsPlusPlus Plugin Developer API
+ * Copyright (C) 2013 PermissionsPlusPlus-Team
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,21 +15,21 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.minecrell.permissionsx.api;
+package net.minecrell.permissionsplusplus.api;
 
 import java.util.logging.Logger;
 
-import net.minecrell.permissionsx.api.entity.OfflinePermissionUser;
-import net.minecrell.permissionsx.api.entity.PermissionGroup;
-import net.minecrell.permissionsx.api.entity.PermissionUser;
-import net.minecrell.permissionsx.api.module.ModuleManager;
+import net.minecrell.permissionsplusplus.api.entity.OfflinePermissionUser;
+import net.minecrell.permissionsplusplus.api.entity.PermissionGroup;
+import net.minecrell.permissionsplusplus.api.entity.PermissionUser;
+import net.minecrell.permissionsplusplus.api.module.ModuleManager;
 
 import org.bukkit.Server;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 /**
- * Main Interface to work with the PermissionX API
+ * Main Interface to work with the PermissionPlusPlus API
  * @since 0.0.1a
  * @author MP5K
  * @version 0.0.1a
@@ -43,13 +43,13 @@ public interface PermissionManager {
 	public Logger getLogger();
 
 	/**
-	 * Returns the Name of the PermissionsX implementation
-	 * @return by default: <code>PermissionsX</code>
+	 * Returns the Name of the PermissionsPlusPlus implementation
+	 * @return by default: <code>PermissionsPlusPlus</code>
 	 */
 	public String getName();
 
 	/**
-	 * Returns the Version of the PermissionsX implementation
+	 * Returns the Version of the PermissionsPlusPlus implementation
 	 * @return the Version by default in the Format: <br>
 	 *         <code>{major version}.{minor version}.{patch version}</code>
 	 */
@@ -90,7 +90,7 @@ public interface PermissionManager {
 	 * Returns a Specific User identified by his username.
 	 * @param name the Username you wan't to the the Player from
 	 * @return the User, may be null if the user can't be found or is not online
-	 * @see net.minecrell.permissionsx.api.entity.PermissionUser
+	 * @see net.minecrell.permissionsplusplus.api.entity.PermissionUser
 	 */
 	public PermissionUser getUser(String name);
 
@@ -98,7 +98,7 @@ public interface PermissionManager {
 	 * Returns a Specific User identified by his username.
 	 * @param name the Username you wan't to the the Player from
 	 * @return the User, may be null if the user can't be found
-	 * @see net.minecrell.permissionsx.api.entity.PermissionUser
+	 * @see net.minecrell.permissionsplusplus.api.entity.PermissionUser
 	 */
 	public OfflinePermissionUser getOfflineUser(String name);
 

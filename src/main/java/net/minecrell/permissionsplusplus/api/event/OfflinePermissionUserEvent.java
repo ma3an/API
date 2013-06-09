@@ -1,6 +1,6 @@
-package net.minecrell.permissionsx.api.event;
+package net.minecrell.permissionsplusplus.api.event;
 
-import net.minecrell.permissionsx.api.entity.OfflinePermissionUser;
+import net.minecrell.permissionsplusplus.api.entity.OfflinePermissionUser;
 
 /**
  * Represents a permission user related event.

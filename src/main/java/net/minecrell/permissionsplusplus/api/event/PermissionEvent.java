@@ -1,4 +1,4 @@
-package net.minecrell.permissionsx.api.event;
+package net.minecrell.permissionsplusplus.api.event;
 
 import org.bukkit.event.Event;
 

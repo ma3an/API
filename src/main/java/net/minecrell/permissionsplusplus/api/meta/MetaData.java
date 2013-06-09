@@ -1,6 +1,6 @@
-package net.minecrell.permissionsx.api.meta;
+package net.minecrell.permissionsplusplus.api.meta;
 
-import net.minecrell.permissionsx.api.PermissionManager;
+import net.minecrell.permissionsplusplus.api.PermissionManager;
 
 public final class MetaData {
 

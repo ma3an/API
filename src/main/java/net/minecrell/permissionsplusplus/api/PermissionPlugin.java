@@ -1,4 +1,4 @@
-package net.minecrell.permissionsx.api;
+package net.minecrell.permissionsplusplus.api;
 
 import org.bukkit.plugin.Plugin;
 

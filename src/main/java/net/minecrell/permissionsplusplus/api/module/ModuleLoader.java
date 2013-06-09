@@ -1,4 +1,4 @@
-package net.minecrell.permissionsx.api.module;
+package net.minecrell.permissionsplusplus.api.module;
 
 import java.io.File;
 import java.io.IOException;

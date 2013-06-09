@@ -1,4 +1,4 @@
-package net.minecrell.permissionsx.api.module;
+package net.minecrell.permissionsplusplus.api.module;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,8 +6,8 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.logging.Logger;
 
-import net.minecrell.permissionsx.api.PermissionManager;
-import net.minecrell.permissionsx.api.PermissionPlugin;
+import net.minecrell.permissionsplusplus.api.PermissionManager;
+import net.minecrell.permissionsplusplus.api.PermissionPlugin;
 
 import org.bukkit.Server;
 import org.bukkit.command.Command;
@@ -19,12 +19,12 @@ import org.bukkit.plugin.PluginLoader;
 
 import com.avaje.ebean.EbeanServer;
 
-public class PermissionsXModule implements PermissionModule {
+public class PermissionsPlusPlusModule implements PermissionModule {
 
 	// TODO: Javadocs :(
 
 	private ModuleManager moduleManager;
-	private PermissionsXModuleLoader moduleLoader;
+	private PermissionsPlusPlusModuleLoader moduleLoader;
 	private ClassLoader classLoader;
 
 	private String moduleName;
@@ -58,7 +58,7 @@ public class PermissionsXModule implements PermissionModule {
 		return classLoader;
 	}
 
-	protected final void initialize(final PermissionsXModuleLoader loader, final ClassLoader classLoader, final ModuleManager moduleManager, final String moduleName, final File file, final File dataFolder) {
+	protected final void initialize(final PermissionsPlusPlusModuleLoader loader, final ClassLoader classLoader, final ModuleManager moduleManager, final String moduleName, final File file, final File dataFolder) {
 		if (!initialized) {
 			initialized = true;
 

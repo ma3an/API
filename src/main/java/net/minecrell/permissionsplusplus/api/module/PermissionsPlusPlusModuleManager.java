@@ -1,11 +1,11 @@
-package net.minecrell.permissionsx.api.module;
+package net.minecrell.permissionsplusplus.api.module;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import net.minecrell.permissionsx.api.PermissionManager;
+import net.minecrell.permissionsplusplus.api.PermissionManager;
 
 import org.bukkit.Server;
 import org.bukkit.event.Event;
@@ -14,12 +14,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.UnknownDependencyException;
 
-public final class PermissionsXModuleManager implements ModuleManager {
+public final class PermissionsPlusPlusModuleManager implements ModuleManager {
 	private final PermissionManager permissionManager;
 
 	private final Map<String, PermissionModule> modules = new HashMap<String, PermissionModule>();
 
-	public PermissionsXModuleManager(final PermissionManager permissionManager) {
+	public PermissionsPlusPlusModuleManager(final PermissionManager permissionManager) {
 		this.permissionManager = permissionManager;
 	}
 

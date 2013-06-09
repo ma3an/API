@@ -1,6 +1,6 @@
-package net.minecrell.permissionsx.api.module;
+package net.minecrell.permissionsplusplus.api.module;
 
-import net.minecrell.permissionsx.api.PermissionManager;
+import net.minecrell.permissionsplusplus.api.PermissionManager;
 
 import org.bukkit.event.Event;
 import org.bukkit.event.Listener;

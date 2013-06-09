@@ -1,7 +1,7 @@
-package net.minecrell.permissionsx.api.event;
+package net.minecrell.permissionsplusplus.api.event;
 
-import net.minecrell.permissionsx.api.entity.OfflinePermissionUser;
-import net.minecrell.permissionsx.api.entity.PermissionGroup;
+import net.minecrell.permissionsplusplus.api.entity.OfflinePermissionUser;
+import net.minecrell.permissionsplusplus.api.entity.PermissionGroup;
 
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;

@@ -1,4 +1,4 @@
-package net.minecrell.permissionsx.api.module;
+package net.minecrell.permissionsplusplus.api.module;
 
 import java.util.logging.Level;
 import java.util.logging.LogRecord;

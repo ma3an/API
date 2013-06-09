@@ -1,9 +1,9 @@
-package net.minecrell.permissionsx.api.entity;
+package net.minecrell.permissionsplusplus.api.entity;
 
 import java.util.List;
 
-import net.minecrell.permissionsx.api.PermissionManager;
-import net.minecrell.permissionsx.api.meta.MetaDataHolder;
+import net.minecrell.permissionsplusplus.api.PermissionManager;
+import net.minecrell.permissionsplusplus.api.meta.MetaDataHolder;
 
 import org.bukkit.permissions.Permission;
 

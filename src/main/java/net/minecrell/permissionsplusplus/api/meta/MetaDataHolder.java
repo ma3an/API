@@ -1,4 +1,4 @@
-package net.minecrell.permissionsx.api.meta;
+package net.minecrell.permissionsplusplus.api.meta;
 
 /**
  * Represents a Specific Entity / Object with can handle MetaData Values

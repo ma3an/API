@@ -1,11 +1,11 @@
-package net.minecrell.permissionsx.api.module;
+package net.minecrell.permissionsplusplus.api.module;
 
 import java.io.File;
 import java.io.InputStream;
 import java.util.logging.Logger;
 
-import net.minecrell.permissionsx.api.PermissionManager;
-import net.minecrell.permissionsx.api.PermissionPlugin;
+import net.minecrell.permissionsplusplus.api.PermissionManager;
+import net.minecrell.permissionsplusplus.api.PermissionPlugin;
 
 import org.bukkit.Server;
 import org.bukkit.plugin.Plugin;

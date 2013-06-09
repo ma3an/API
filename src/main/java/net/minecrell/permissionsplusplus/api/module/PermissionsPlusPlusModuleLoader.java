@@ -1,4 +1,4 @@
-package net.minecrell.permissionsx.api.module;
+package net.minecrell.permissionsplusplus.api.module;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -9,15 +9,15 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.logging.Level;
 
-import net.minecrell.permissionsx.api.event.module.ModuleEnableEvent;
+import net.minecrell.permissionsplusplus.api.event.module.ModuleEnableEvent;
 
 import org.apache.commons.lang.Validate;
 import org.bukkit.plugin.UnknownDependencyException;
 
-public class PermissionsXModuleLoader implements ModuleLoader {
+public class PermissionsPlusPlusModuleLoader implements ModuleLoader {
 
 	@Override
-	public PermissionsXModule loadModule(final File file) throws InvalidModuleException, UnknownDependencyException {
+	public PermissionsPlusPlusModule loadModule(final File file) throws InvalidModuleException, UnknownDependencyException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -30,7 +30,7 @@ public class PermissionsXModuleLoader implements ModuleLoader {
 			final String moduleName = module.getName();
 			module.getLogger().info("Enabling " + moduleName + "...");
 
-			final PermissionsXModule xModule = (PermissionsXModule) module;
+			final PermissionsPlusPlusModule xModule = (PermissionsPlusPlusModule) module;
 
 			try {
 				xModule.setEnabled(true);
@@ -50,7 +50,7 @@ public class PermissionsXModuleLoader implements ModuleLoader {
 
 	private ClassLoader getClassLoader(final PermissionModule module) {
 		this.checkModule(module);
-		return ((PermissionsXModule) module).getClassLoader();
+		return ((PermissionsPlusPlusModule) module).getClassLoader();
 	}
 
 	@Override
@@ -73,7 +73,7 @@ public class PermissionsXModuleLoader implements ModuleLoader {
 		resourcePath = resourcePath.replace('\\', '/');
 
 		this.checkModule(module);
-		final PermissionsXModule xModule = (PermissionsXModule) module;
+		final PermissionsPlusPlusModule xModule = (PermissionsPlusPlusModule) module;
 
 		final InputStream i = this.getResource(module, resourcePath);
 		if (i == null)
@@ -99,7 +99,7 @@ public class PermissionsXModuleLoader implements ModuleLoader {
 	}
 
 	private void checkModule(final PermissionModule module) {
-		Validate.isTrue(module instanceof PermissionsXModule, "Module is not associated with this ModuleLoader");
+		Validate.isTrue(module instanceof PermissionsPlusPlusModule, "Module is not associated with this ModuleLoader");
 	}
 
 }
