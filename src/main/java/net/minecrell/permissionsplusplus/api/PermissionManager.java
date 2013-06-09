@@ -1,6 +1,6 @@
 /*
  * Permissions++ API
- * Copyright (C) 2013 Permissions++ Team
+ * Copyright (C) 2013 Permissions++ Team (https://github.com/PermissionsPlusPlus/)
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
