@@ -1,6 +1,6 @@
 /*
- * PermissionsPlusPlus - PermissionsPlusPlus Plugin Developer API
- * Copyright (C) 2013 PermissionsPlusPlus-Team
+ * Permissions++ API
+ * Copyright (C) 2013 Permissions++ Team
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
